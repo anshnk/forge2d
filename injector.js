@@ -3,32 +3,34 @@ const modFiles = [
     'mod1.js',
 ];
 
-// Function to load the mod files dynamically
-function loadMods(modFiles) {
+// Load all mod files from the 'mods' directory
+function loadMods() {
+    const modFiles = ['mod1.js']; // Add your mod files here manually or dynamically
+
     modFiles.forEach(modFile => {
         const script = document.createElement('script');
-        script.src = `mods/${modFile}`; // Path to the mod file (assuming it's inside the 'mods' folder)
+        script.src = `mods/${modFile}`;
         script.type = 'text/javascript';
         script.onload = () => {
-            console.log(`Loaded mod: ${modFile}`);
+            console.log(`Loaded and executed mod: ${modFile}`);
         };
         script.onerror = () => {
             console.error(`Failed to load mod: ${modFile}`);
         };
         document.body.appendChild(script);
+        console.log(`Script tag added for mod: ${modFile}`); // Debug log
     });
 }
 
 // Call the function to load mods after the page has loaded
 window.addEventListener('load', () => {
-    loadMods(modFiles); // Load all the mods dynamically
+    console.log("Page loaded, starting to load mods."); // Debug log
+    loadMods(); // Load all the mods dynamically
 });
+
 
 // Define custom blocks to be injected (Placeholder, can be modified dynamically from mods)
 const customBlocks = {
-    "customBlock1": "Custom Block 1",
-    "customBlock2": "Custom Block 2",
-    "bread": "Bread",
 };
 
 // Object to track loaded images
@@ -88,13 +90,19 @@ function initializeRegularBlockImages() {
 
         blockimages[imageKey].onload = () => {
             loadedImages[imageKey] = blockimages[imageKey];
-            console.log(`${imageKey} loaded`);
+            // Remove comment for debugging console.log(`${imageKey} loaded`);
         };
 
         blockimages[imageKey].onerror = () => {
             console.error(`Failed to load image for ${imageKey}`);
         };
     }
+}
+
+function tp(x, y) {
+    player.y = y; 
+    player.x = x;
+    console.log(`Teleported to (${y}, ${x})! `);
 }
 
 // Load regular block images on startup

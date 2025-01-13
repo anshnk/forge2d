@@ -1,21 +1,17 @@
-// mod1.js
-const customBlocks = {
-    "bread": "Bread",
-};
+// Don't redeclare customBlocks, blocknames, selblocks, or loadedImages
+// Assume these variables exist globally due to the injector.js script
 
-const blocknames = window.blocknames || {};
-const selblocks = window.selblocks || [];
-const allblocks = window.allblocks || [];
+// Add or modify custom blocks in the existing global customBlocks object
+customBlocks["bread"] = "Bread";
 
-// Inject custom blocks into blocknames and allblocks
+// Inject custom blocks into blocknames, allblocks, and selblocks
 Object.keys(customBlocks).forEach(block => {
     blocknames[block] = customBlocks[block];
     allblocks.push(block);
     selblocks.push(block);
 });
 
-// Example for adding block images for custom blocks
-const loadedImages = window.loadedImages || {};
+// Add images for custom blocks in the existing blockimages and loadedImages
 for (const blk of Object.keys(customBlocks)) {
     const imageKey = `block_${blk}`;
     blockimages[imageKey] = new Image();
@@ -30,3 +26,5 @@ for (const blk of Object.keys(customBlocks)) {
         console.error(`Failed to load image for ${imageKey}`);
     };
 }
+
+console.log("mod1.js executed successfully!");
