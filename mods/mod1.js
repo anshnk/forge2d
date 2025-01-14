@@ -28,3 +28,6 @@ for (const blk of Object.keys(customBlocks)) {
 }
 
 console.log("mod1.js executed successfully!");
+function theRealTest() {
+    console.log("This is the real test");
+}
